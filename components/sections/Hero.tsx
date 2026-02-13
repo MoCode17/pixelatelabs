@@ -9,7 +9,7 @@ const Hero = () => {
       {/* Nav UI */}
       <Nav />
       {/* Hero Card Container */}
-      <div className="relative w-full max-w-[1440px] h-[calc(100vh-2rem)] rounded-3xl overflow-hidden">
+      <div className="relative w-full max-w-360 h-[calc(100vh-2rem)] rounded-3xl overflow-hidden">
         {/* Background Image */}
         <Image
           src={pexelsHero}
@@ -20,7 +20,7 @@ const Hero = () => {
         />
 
         {/* Dark Overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/50 to-black/60" />
 
         {/* Content */}
         <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16 lg:px-20 py-6">
@@ -28,12 +28,12 @@ const Hero = () => {
             Hey 👋 We&apos;re Pixelate!
           </p>
           {/* Headline */}
-          <div className="text-yellow-400 text-4xl md:text-5xl lg:text-6xl font-bold font-['Avantt_TRIAL'] leading-tight mb-4">
+          <div className="text-yellow-400 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
             &lt;Web Design/&gt;
           </div>
 
           {/* Main Title */}
-          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold font-['Avantt_TRIAL'] leading-tight max-w-[800px] mb-6">
+          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold  leading-tight max-w-200 mb-6">
             Without The Tech Headaches
           </h1>
 
@@ -49,7 +49,7 @@ const Hero = () => {
           <div className="flex flex-wrap items-center gap-6">
             {/* CTA Buttons */}
             <button className="h-12 md:h-14 px-6 bg-blue-600 hover:bg-blue-700 transition-colors rounded-xl flex justify-center items-center gap-3">
-              <span className="text-white text-base md:text-lg font-bold font-['Avantt_TRIAL']">
+              <span className="text-white text-base md:text-lg font-bold ">
                 Start Your Project
               </span>
               <div className="w-6 h-6 flex items-center justify-center">
@@ -70,7 +70,7 @@ const Hero = () => {
             </button>
 
             <button className="h-12 md:h-14 px-6 bg-yellow-400 hover:bg-yellow-500 transition-colors rounded-xl flex justify-center items-center gap-3">
-              <span className="text-white text-base md:text-lg font-bold font-['Avantt_TRIAL']">
+              <span className="text-white text-base md:text-lg font-bold">
                 View Our Work
               </span>
               <div className="w-6 h-6 flex items-center justify-center">
