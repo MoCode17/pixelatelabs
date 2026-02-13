@@ -5,9 +5,7 @@ import Nav from "@/components/ui/Nav";
 
 const Hero = () => {
   return (
-    <div className="relative w-full min-h-screen bg-gray-100 flex justify-center items-center p-4">
-      {/* Nav UI */}
-      <Nav />
+    <div className="relative w-full min-h-screen bg-snow flex justify-center items-center p-4">
       {/* Hero Card Container */}
       <div className="relative w-full max-w-360 h-[calc(100vh-2rem)] rounded-3xl overflow-hidden">
         {/* Background Image */}
