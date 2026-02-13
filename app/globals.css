@@ -8,6 +8,10 @@ body {
   max-width: 100vw;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -36,6 +40,7 @@ body {
 @theme {
   /* Custom Colors */
   --color-electric: #0066ff;
+  --color-snow: #ffffff;
 
   /* Background/Foreground */
   --color-background: var(--background);
