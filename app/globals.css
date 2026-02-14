@@ -54,4 +54,5 @@ body {
 
   /* Custom Fonts */
   --font-avantt: var(--font-avantt-trial);
+  --font-player: var(--font-press-start-2p);
 }

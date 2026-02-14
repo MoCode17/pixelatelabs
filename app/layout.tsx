@@ -1,22 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 
 const avanttTrial = localFont({
   src: [
     {
-      path: "../public/fonts/Avantt/AvanttTRIAL-Regular.otf",
+      path: "../public/fonts/AvanttTRIAL-Regular.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/Avantt/AvanttTRIAL-Bold.otf",
+      path: "../public/fonts/AvanttTRIAL-Bold.otf",
       weight: "700",
       style: "normal",
     },
   ],
   variable: "--font-avantt-trial",
+});
+
+const pressStart2P = Press_Start_2P({
+  variable: "--font-press-start-2p",
+  weight: "400",
+  style: "normal",
+  subsets: ["latin"],
 });
 
 const geistSans = Geist({
@@ -48,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${avanttTrial.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${avanttTrial.variable} ${pressStart2P.variable} antialiased`}
       >
         <div className="min-h-screen">{children}</div>
       </body>

@@ -26,7 +26,7 @@ const Hero = () => {
             Hey 👋 We&apos;re Pixelate!
           </p>
           {/* Headline */}
-          <div className="text-yellow-400 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 font-avantt">
+          <div className="text-yellow-400 text-4xl md:text-5xl lg:text-6xl  leading-tight mb-4 font-player">
             &lt;Web Design/&gt;
           </div>
           <div className="flex flex-col items-start pl-24">
