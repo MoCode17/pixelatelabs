@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import icon from "@/public/images/icon.svg";
 import Image from "next/image";
 import { ChevronRight, Pen, Code, BarChart3 } from "lucide-react";
@@ -48,10 +48,46 @@ const services = [
   },
 ];
 
+const CYCLE_INTERVAL = 10000;
+
 const Services = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const active = services[activeIndex];
   const ActiveIcon = active.icon;
+
+  const changeService = useCallback((newIndex: number) => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setActiveIndex(newIndex);
+      setIsAnimating(false);
+    }, 300);
+  }, []);
+
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setActiveIndex((prev) => {
+        const next = (prev + 1) % services.length;
+        setIsAnimating(true);
+        setTimeout(() => setIsAnimating(false), 300);
+        return next;
+      });
+    }, CYCLE_INTERVAL);
+  }, []);
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [resetTimer]);
+
+  const handleTabClick = (i: number) => {
+    changeService(i);
+    resetTimer();
+  };
 
   return (
     <section className="bg-snow px-4 py-10">
@@ -76,7 +112,7 @@ const Services = () => {
               return (
                 <button
                   key={service.title}
-                  onClick={() => setActiveIndex(i)}
+                  onClick={() => handleTabClick(i)}
                   className={`flex items-center justify-between py-5 border-t border-b border-black/10 cursor-pointer transition-colors text-left ${
                     i > 0 ? "-mt-px" : ""
                   }`}
@@ -103,9 +139,13 @@ const Services = () => {
           </div>
 
           {/* Right: Detail card */}
-          <div className="col-span-2 bg-gray rounded-2xl border border-black/10 overflow-hidden max-w-4xl lg:ml-8">
+          <div
+            className={`col-span-2 bg-gray rounded-2xl border border-black/10 overflow-hidden max-w-4xl lg:ml-8 transition-opacity duration-300 ${
+              isAnimating ? "opacity-0" : "opacity-100"
+            }`}
+          >
             <div className="w-full px-8 pt-8">
-              <ActiveIcon className="w-8 h-8 text-black/70" strokeWidth={2} />
+              <ActiveIcon className="w-8 h-8 text-black" strokeWidth={2} />
             </div>
             <div className="flex flex-col lg:flex-row gap-6 p-8">
               {/* Text content */}
