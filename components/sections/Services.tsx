@@ -1,26 +1,149 @@
-import React from "react";
-import logo from "@/public/images/icon.svg";
+"use client";
+
+import React, { useState } from "react";
+import icon from "@/public/images/icon.svg";
 import Image from "next/image";
+import { ChevronRight, Pen, Code, BarChart3 } from "lucide-react";
+import webDesignImg from "@/public/images/webDesign.jpg";
+
+const services = [
+  {
+    title: "Web Design",
+    icon: Pen,
+    description:
+      "Create stunning, user-centric designs that captivate your audience and reflect your brand's unique identity. We blend creativity with strategy.",
+    features: [
+      "Custom UI/UX Design",
+      "Brand Identity Integration",
+      "Responsive Layouts",
+      "Prototyping & Wireframing",
+    ],
+    image: webDesignImg,
+  },
+  {
+    title: "Web Development",
+    icon: Code,
+    description:
+      "Build fast, scalable, and modern web applications using cutting-edge technologies. We deliver performant solutions tailored to your business needs.",
+    features: [
+      "Full-Stack Development",
+      "API Design & Integration",
+      "Performance Optimization",
+      "CMS & E-Commerce Solutions",
+    ],
+    image: webDesignImg,
+  },
+  {
+    title: "Digital Strategy",
+    icon: BarChart3,
+    description:
+      "Drive growth with data-driven digital strategies that maximize your online presence. We help you reach the right audience at the right time.",
+    features: [
+      "SEO & Content Strategy",
+      "Analytics & Reporting",
+      "Social Media Planning",
+      "Conversion Optimization",
+    ],
+    image: webDesignImg,
+  },
+];
 
 const Services = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = services[activeIndex];
+  const ActiveIcon = active.icon;
+
   return (
-    <div className="relative grid grid-cols-2 px-[40px] py-[60px] justify-center items-center">
-      <div className="flex justify-self-start items-center ">
-        <Image src={logo} alt="Logo" className="w-6 h-6 mr-4" />
-        <h3 className="text-lg text-electric font-bold">OUR SERVICES</h3>
-      </div>
-      <div>
-        <h2 className="text-[64px] font-bold font-['Avantt_TRIAL'] text-black tracking-[-0.02%] leading-[1.04]">
-          Everything You Need To Succeed Online
-        </h2>
-      </div>
-      <div>
-        <div>
-          <h3>Web Design</h3>
-          <button></button>
+    <section className="bg-snow px-4 py-10">
+      <div className="px-12 md:py-20">
+        {/* Top: Label + Heading */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 md:gap-x-18 lg:gap-x-24 gap-y-10 md:gap-y-16 mb-14 md:mb-20">
+          <div className="flex items-center self-start">
+            <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
+            <span className="text-electric font-bold text-lg tracking-wide uppercase">
+              Our Services
+            </span>
+          </div>
+          <h2 className="col-span-2 text-4xl md:text-4xl xl:text-5xl font-bold text-black tracking-tight leading-[1.05] lg:ml-8 font-avantt">
+            Everything You Need to Succeed Online
+          </h2>
+
+          {/* Bottom: Service List + Detail Card */}
+          {/* Left: Service tabs */}
+          <div className="flex flex-col">
+            {services.map((service, i) => {
+              const isActive = i === activeIndex;
+              return (
+                <button
+                  key={service.title}
+                  onClick={() => setActiveIndex(i)}
+                  className={`flex items-center justify-between py-5 border-t border-b border-black/10 cursor-pointer transition-colors text-left ${
+                    i > 0 ? "-mt-px" : ""
+                  }`}
+                >
+                  <span
+                    className={`text-xl md:text-2xl font-bold transition-colors font-avantt ${
+                      isActive ? "text-black" : "text-black/30"
+                    }`}
+                  >
+                    {service.title}
+                  </span>
+                  <span
+                    className={`flex items-center justify-center w-9 h-9 rounded-full transition-colors ${
+                      isActive
+                        ? "bg-electric text-white"
+                        : "bg-black/10 text-black/30"
+                    }`}
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: Detail card */}
+          <div className="col-span-2 bg-gray rounded-2xl border border-black/10 overflow-hidden max-w-4xl lg:ml-8">
+            <div className="w-full px-8 pt-8">
+              <ActiveIcon className="w-8 h-8 text-black/70" strokeWidth={2} />
+            </div>
+            <div className="flex flex-col lg:flex-row gap-6 p-8">
+              {/* Text content */}
+              <div className="flex-1 flex flex-col gap-5 overflow-hidden max-w-lg">
+                <p className="text-black/60 text-sm leading-normal">
+                  {active.description}
+                </p>
+                <ul className="flex flex-col gap-2.5">
+                  {active.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-electric/60 shrink-0" />
+                      <span className="text-sm font-semibold text-black">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <button className="mt-2 flex items-center gap-2 border-2 border-electric text-electric rounded-xl px-5 py-2.5 text-sm font-semibold w-fit hover:bg-electric hover:text-white transition-colors cursor-pointer">
+                  Learn More
+                  <span className="flex items-center justify-center w-6 h-6 bg-electric text-white rounded-full">
+                    <ChevronRight className="w-4 h-4" />
+                  </span>
+                </button>
+              </div>
+              {/* Image */}
+              <div className="relative h-60 md:h-60 lg:h-80 w-full lg:w-80 2xl:w-120 rounded-xl overflow-hidden shrink-0">
+                <Image
+                  src={active.image}
+                  alt={active.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

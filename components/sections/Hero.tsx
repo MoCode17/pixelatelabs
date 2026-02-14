@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <div className="relative w-full min-h-screen bg-snow flex justify-center items-center p-4">
       {/* Hero Card Container */}
-      <div className="relative w-full max-w-360 h-[calc(100vh-2rem)] rounded-3xl overflow-hidden">
+      <div className="relative w-full h-[calc(100vh-2rem)] rounded-3xl overflow-hidden">
         {/* Background Image */}
         <Image
           src={pexelsHero}
@@ -26,12 +26,12 @@ const Hero = () => {
             Hey 👋 We&apos;re Pixelate!
           </p>
           {/* Headline */}
-          <div className="text-yellow-400 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+          <div className="text-yellow-400 text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 font-avantt">
             &lt;Web Design/&gt;
           </div>
 
           {/* Main Title */}
-          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold  leading-tight max-w-200 mb-6">
+          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold font-avantt leading-tight max-w-200 mb-6">
             Without The Tech Headaches
           </h1>
 

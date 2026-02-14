@@ -1,6 +1,23 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import localFont from "next/font/local";
+
+const avanttTrial = localFont({
+  src: [
+    {
+      path: "../public/fonts/Avantt/AvanttTRIAL-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Avantt/AvanttTRIAL-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-avantt-trial",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,9 +48,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${avanttTrial.variable} antialiased`}
       >
-        <div className="min-h-screen bg-snow">{children}</div>
+        <div className="min-h-screen">{children}</div>
       </body>
     </html>
   );

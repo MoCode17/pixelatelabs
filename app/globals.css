@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 /* Prevent horizontal overflow on mobile */
 html,
 body {
@@ -41,6 +40,7 @@ body {
   /* Custom Colors */
   --color-electric: #0066ff;
   --color-snow: #ffffff;
+  --color-gray: #bdc0c7;
 
   /* Background/Foreground */
   --color-background: var(--background);
@@ -51,4 +51,7 @@ body {
   --font-family-heading: var(--font-montserrat), system-ui, sans-serif;
   --font-family-geist-sans: var(--font-geist-sans);
   --font-family-geist-mono: var(--font-geist-mono);
+
+  /* Custom Fonts */
+  --font-avantt: var(--font-avantt-trial);
 }

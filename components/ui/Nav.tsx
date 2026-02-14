@@ -111,7 +111,7 @@ const Navbar = () => {
         <div className="w-full max-w-lg lg:max-w-3xl">
           <div className="flex items-center justify-between h-16 p-4 rounded-b-3xl bg-snow">
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0">
+            <Link href="/" className="shrink-0">
               <Image
                 src={logo}
                 alt="Logo"
