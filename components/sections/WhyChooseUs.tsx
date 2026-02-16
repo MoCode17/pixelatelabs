@@ -1,84 +1,81 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import {
-  MapPin,
-  Puzzle,
-  BarChart3,
-  Clock,
-  Headphones,
-  DollarSign,
-  ArrowUpRight,
-} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Star } from "lucide-react";
 import icon from "@/public/images/icon.svg";
 
-interface WhyChooseUsCard {
+interface Testimonial {
   id: string;
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+  name: string;
+  role: string;
+  quote: string;
+  rating: number;
+  initials: string;
 }
 
-export interface WhyChooseUsSectionProps {
+export interface TestimonialsSectionProps {
   badge?: string;
   title?: string;
   subtitle?: string;
-  cards?: WhyChooseUsCard[];
+  testimonials?: Testimonial[];
 }
 
-const defaultCards: WhyChooseUsCard[] = [
+const defaultTestimonials: Testimonial[] = [
   {
     id: "1",
-    icon: <MapPin className="w-6 h-6" />,
-    title: "Local Expertise",
-    description:
-      "Deep understanding of the Melbourne market and what local customers expect from your online presence.",
+    name: "Jesse Heffernan",
+    role: "Founder, Heffernan Homes",
+    quote:
+      "Pixelate Labs completely transformed our online presence. Our new website has generated 3x more leads than our previous site. Their attention to detail and understanding of our brand was exceptional.",
+    rating: 5,
+    initials: "JH",
   },
   {
     id: "2",
-    icon: <Puzzle className="w-6 h-6" />,
-    title: "Custom Solutions",
-    description:
-      "No templates or cookie-cutter designs. Every website is built from scratch to match your brand perfectly.",
+    name: "James Chen",
+    role: "CEO, Chen Enterprises",
+    quote:
+      "Working with Pixelate was an absolute game-changer. They delivered a world-class e-commerce platform that increased our conversion rate by 150%. Professional, creative, and always on time.",
+    rating: 5,
+    initials: "JC",
   },
   {
     id: "3",
-    icon: <BarChart3 className="w-6 h-6" />,
-    title: "Results Driven",
-    description:
-      "Every design decision is backed by data and focused on converting visitors into paying customers.",
+    name: "Emily Rodriguez",
+    role: "Marketing Director, Bloom & Co",
+    quote:
+      "The team at Pixelate Labs truly understands modern web design. They built us a stunning website that perfectly captures our brand identity and has significantly improved our customer engagement.",
+    rating: 5,
+    initials: "ER",
   },
   {
     id: "4",
-    icon: <Clock className="w-6 h-6" />,
-    title: "Fast Delivery",
-    description:
-      "Launch your new website in weeks, not months. We respect your timeline and deliver on schedule.",
-  },
-  {
-    id: "5",
-    icon: <Headphones className="w-6 h-6" />,
-    title: "Ongoing Support",
-    description:
-      "We don't disappear after launch. Get dedicated support and maintenance to keep your site running smoothly.",
-  },
-  {
-    id: "6",
-    icon: <DollarSign className="w-6 h-6" />,
-    title: "Transparent Pricing",
-    description:
-      "No hidden fees or surprise costs. You'll know exactly what you're paying for from day one.",
+    name: "Michael Thompson",
+    role: "Owner, Thompson Legal",
+    quote:
+      "From initial consultation to final launch, Pixelate Labs exceeded every expectation. Our website now ranks on the first page of Google and brings in consistent leads every week.",
+    rating: 5,
+    initials: "MT",
   },
 ];
 
-const WhyChooseUs = ({
+const stats = [
+  { value: "15+", label: "Happy Clients" },
+  { value: "100%", label: "Projects Delivered on time" },
+  { value: "5.0", label: "Average Rating" },
+  { value: "24/7", label: "Support" },
+];
+
+const TestimonialsSection = ({
   badge = "WHY CHOOSE US",
   title = "Why Melbourne Businesses Choose Us",
-  subtitle = "We don't just build websites — we craft digital experiences that drive real results for Melbourne businesses.",
-  cards = defaultCards,
-}: WhyChooseUsSectionProps) => {
+  subtitle = "We're not just a web design agency — we're your growth partner. Here's what our clients have to say about working with Pixelate Labs.",
+  testimonials = defaultTestimonials,
+}: TestimonialsSectionProps) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   // Animation variants — matching Featured section patterns
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -114,6 +111,18 @@ const WhyChooseUs = ({
     },
   };
 
+  const testimonialTransition = {
+    initial: { opacity: 0, x: 20 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -20 },
+    transition: {
+      duration: 0.4,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  };
+
+  const activeTestimonial = testimonials[activeIndex];
+
   return (
     <section className="w-full bg-[#0B1121] py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -127,13 +136,13 @@ const WhyChooseUs = ({
         >
           {/* Badge */}
           <motion.div variants={fadeInUpVariants} className="mb-4">
-            <span className="inline-flex items-center gap text-lg font-bold tracking-wider text-blue-500 uppercase">
+            <span className="inline-flex items-center text-lg font-bold tracking-wider text-blue-500 uppercase">
               <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
               {badge}
             </span>
           </motion.div>
 
-          {/* Title, Subtitle, and CTA */}
+          {/* Title and Subtitle */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
             <motion.h2
               variants={fadeInUpVariants}
@@ -142,53 +151,104 @@ const WhyChooseUs = ({
               {title}
             </motion.h2>
 
-            <motion.div
+            <motion.p
               variants={fadeInUpVariants}
-              className="flex flex-col gap-4 lg:max-w-lg lg:pt-2"
+              className="text-base sm:text-lg text-gray-400 max-w-md lg:max-w-lg lg:pt-2 leading-relaxed"
             >
-              <p className="text-base sm:text-lg text-gray-400 leading-relaxed">
-                {subtitle}
-              </p>
-              <div>
-                <button className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300">
-                  Start Your Project
-                  <ArrowUpRight className="w-5 h-5" />
-                </button>
-              </div>
-            </motion.div>
+              {subtitle}
+            </motion.p>
           </div>
         </motion.div>
 
-        {/* Cards Grid */}
+        {/* Testimonial Card */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
         >
-          {cards.map((card) => (
+          <motion.div variants={cardVariants}>
+            <div className="relative bg-[#111D33] border border-[#1E2D4A] rounded-2xl p-8 sm:p-10 lg:p-12 mb-6">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTestimonial.id}
+                  initial={testimonialTransition.initial}
+                  animate={testimonialTransition.animate}
+                  exit={testimonialTransition.exit}
+                  transition={testimonialTransition.transition}
+                >
+                  {/* Stars */}
+                  <div className="flex items-center gap-1 mb-6">
+                    {Array.from({ length: activeTestimonial.rating }).map(
+                      (_, i) => (
+                        <Star
+                          key={i}
+                          className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                        />
+                      )
+                    )}
+                  </div>
+
+                  {/* Quote */}
+                  <blockquote className="text-lg sm:text-xl lg:text-2xl text-white leading-relaxed mb-8 font-medium">
+                    &ldquo;{activeTestimonial.quote}&rdquo;
+                  </blockquote>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                      {activeTestimonial.initials}
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold text-base">
+                        {activeTestimonial.name}
+                      </p>
+                      <p className="text-gray-400 text-sm">
+                        {activeTestimonial.role}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Testimonial Tabs */}
+            <div className="flex flex-wrap gap-3 mb-12 lg:mb-16">
+              {testimonials.map((testimonial, index) => (
+                <button
+                  key={testimonial.id}
+                  onClick={() => setActiveIndex(index)}
+                  className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
+                    index === activeIndex
+                      ? "bg-blue-600 text-white shadow-lg shadow-blue-600/25"
+                      : "bg-[#111D33] text-gray-400 border border-[#1E2D4A] hover:border-blue-600/40 hover:text-white"
+                  }`}
+                >
+                  {testimonial.name}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Stats Row */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 pt-8 border-t border-[#1E2D4A]"
+        >
+          {stats.map((stat, index) => (
             <motion.div
-              key={card.id}
-              variants={cardVariants}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.3 }}
-              className="group relative flex flex-col gap-4 bg-[#111D33] border border-[#1E2D4A] rounded-2xl p-6 lg:p-8 transition-colors duration-300 hover:border-blue-600/40"
+              key={index}
+              variants={fadeInUpVariants}
+              className="text-center"
             >
-              {/* Icon */}
-              <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-600/20 flex items-center justify-center text-blue-500 group-hover:bg-blue-600/20 transition-colors duration-300">
-                {card.icon}
-              </div>
-
-              {/* Title */}
-              <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
-                {card.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
-                {card.description}
+              <p className="text-3xl sm:text-4xl font-bold text-white mb-1">
+                {stat.value}
               </p>
+              <p className="text-sm text-gray-400">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -197,4 +257,4 @@ const WhyChooseUs = ({
   );
 };
 
-export default WhyChooseUs;
+export default TestimonialsSection;
