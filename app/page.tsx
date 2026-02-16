@@ -3,6 +3,7 @@ import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import Featured from "@/components/sections/Featured";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
+import Process from "@/components/sections/Process";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Services />
       <Featured />
       <WhyChooseUs />
+      <Process />
     </div>
   );
 }
