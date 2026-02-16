@@ -94,12 +94,10 @@ const Services = () => {
       <div className="px-12 md:py-20">
         {/* Top: Label + Heading */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 md:gap-x-18 lg:gap-x-24 gap-y-10 md:gap-y-16 mb-14 md:mb-20">
-          <div className="flex items-center self-start">
+          <span className="inline-flex items-center gap text-lg font-bold tracking-wider text-blue-600 uppercase">
             <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
-            <span className="text-electric font-bold text-lg tracking-wide uppercase">
-              Our Services
-            </span>
-          </div>
+            OUR SERVICES
+          </span>
           <h2 className="col-span-2 text-4xl md:text-4xl xl:text-5xl font-bold text-black tracking-tight leading-[1.05] lg:ml-8 font-avantt">
             Everything You Need to Succeed Online
           </h2>

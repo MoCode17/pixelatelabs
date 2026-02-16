@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import icon from "@/public/images/icon.svg";
 
 // Props interface for future customization
 export interface FeaturedSectionProps {
@@ -103,19 +104,8 @@ const FeaturedSection = ({
         >
           {/* Badge */}
           <motion.div variants={fadeInUpVariants} className="mb-4">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-blue-600 uppercase">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                className="w-4 h-4"
-              >
-                <path
-                  d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5L8 0Z"
-                  fill="currentColor"
-                />
-              </svg>
+            <span className="inline-flex items-center gap text-lg font-bold tracking-wider text-blue-600 uppercase">
+              <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
               {badge}
             </span>
           </motion.div>
@@ -131,7 +121,7 @@ const FeaturedSection = ({
 
             <motion.p
               variants={fadeInUpVariants}
-              className="text-base sm:text-lg text-gray-600 max-w-md lg:max-w-xs lg:pt-2"
+              className="text-base sm:text-lg text-gray-600 max-w-md lg:max-w-lg lg:pt-2"
             >
               {subtitle}
             </motion.p>
@@ -152,32 +142,29 @@ const FeaturedSection = ({
               variants={cardVariants}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.3 }}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300"
+              className="group relative flex flex-col gap-4 bg-transparent rounded-2xl"
             >
               {/* Image Container */}
-              <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100">
+              <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-100">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover rounded-2xl z-10"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 />
               </div>
 
               {/* Content */}
-              <div className="p-6 lg:p-8">
+              <div className="p-6 lg:p-8 z-5">
                 {/* Tags */}
                 <div className="flex flex-wrap items-center gap-2 mb-4">
                   {project.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="text-xs font-medium text-gray-700 uppercase tracking-wide"
+                      className="text-xs font-medium text-gray-700 uppercase tracking-wide border border-gray-300 rounded-full px-2 py-1 transition-colors duration-300 group-hover:border-blue-600 group-hover:text-blue-600"
                     >
                       {tag}
-                      {index < project.tags.length - 1 && (
-                        <span className="ml-2 text-gray-300">•</span>
-                      )}
                     </span>
                   ))}
                 </div>
