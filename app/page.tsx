@@ -5,6 +5,7 @@ import Featured from "@/components/sections/Featured";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import Process from "@/components/sections/Process";
 import FinalCTA from "@/components/sections/FinalCTA";
+import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <WhyChooseUs />
       <Process />
       <FinalCTA />
+      <Footer />
     </div>
   );
 }
