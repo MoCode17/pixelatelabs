@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import icon from "@/public/images/icon.svg";
 import Image from "next/image";
-import { ChevronRight, Pen, Code, BarChart3 } from "lucide-react";
-import webDesignImg from "@/public/images/webDesign.jpg";
+import { motion } from "framer-motion";
+import { Pen, Code, BarChart3 } from "lucide-react";
+import icon from "@/public/images/icon.svg";
 
 const services = [
   {
@@ -18,7 +18,6 @@ const services = [
       "Responsive Layouts",
       "Prototyping & Wireframing",
     ],
-    image: webDesignImg,
   },
   {
     title: "Web Development",
@@ -31,7 +30,6 @@ const services = [
       "Performance Optimization",
       "CMS & E-Commerce Solutions",
     ],
-    image: webDesignImg,
   },
   {
     title: "Digital Strategy",
@@ -44,7 +42,6 @@ const services = [
       "Social Media Planning",
       "Conversion Optimization",
     ],
-    image: webDesignImg,
   },
 ];
 
@@ -52,28 +49,12 @@ const CYCLE_INTERVAL = 10000;
 
 const Services = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const active = services[activeIndex];
-  const ActiveIcon = active.icon;
-
-  const changeService = useCallback((newIndex: number) => {
-    setIsAnimating(true);
-    setTimeout(() => {
-      setActiveIndex(newIndex);
-      setIsAnimating(false);
-    }, 300);
-  }, []);
 
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
-      setActiveIndex((prev) => {
-        const next = (prev + 1) % services.length;
-        setIsAnimating(true);
-        setTimeout(() => setIsAnimating(false), 300);
-        return next;
-      });
+      setActiveIndex((prev) => (prev + 1) % services.length);
     }, CYCLE_INTERVAL);
   }, []);
 
@@ -85,101 +66,143 @@ const Services = () => {
   }, [resetTimer]);
 
   const handleTabClick = (i: number) => {
-    changeService(i);
+    setActiveIndex(i);
     resetTimer();
   };
 
-  return (
-    <section className="bg-snow px-4 py-10">
-      <div className="px-12 md:py-20">
-        {/* Top: Label + Heading */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 md:gap-x-18 lg:gap-x-24 gap-y-10 md:gap-y-16 mb-14 md:mb-20">
-          <span className="inline-flex items-center gap text-lg font-bold tracking-wider text-blue-600 uppercase">
-            <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
-            OUR SERVICES
-          </span>
-          <h2 className="col-span-2 text-4xl md:text-4xl xl:text-5xl font-bold text-black tracking-tight leading-[1.05] lg:ml-8 font-avantt">
-            Everything You Need to Succeed Online
-          </h2>
+  // Animation variants — matching Featured/WhyChooseUs sections
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
 
-          {/* Bottom: Service List + Detail Card */}
-          {/* Left: Service tabs */}
-          <div className="flex flex-col">
-            {services.map((service, i) => {
-              const isActive = i === activeIndex;
-              return (
-                <button
-                  key={service.title}
-                  onClick={() => handleTabClick(i)}
-                  className={`flex items-center justify-between py-5 border-t border-b border-black/10 cursor-pointer transition-colors text-left ${
-                    i > 0 ? "-mt-px" : ""
+  const fadeInUpVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+      },
+    },
+  };
+
+  return (
+    <section className="w-full bg-snow py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+          className="mb-12 lg:mb-16"
+        >
+          {/* Badge */}
+          <motion.div variants={fadeInUpVariants} className="mb-4">
+            <span className="inline-flex items-center gap text-lg font-bold tracking-wider text-blue-600 uppercase">
+              <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
+              OUR SERVICES
+            </span>
+          </motion.div>
+
+          {/* Title and Subtitle */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+            <motion.h2
+              variants={fadeInUpVariants}
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 max-w-2xl font-avantt"
+            >
+              What We Do Best
+            </motion.h2>
+
+            <motion.p
+              variants={fadeInUpVariants}
+              className="text-base sm:text-lg text-gray-600 max-w-md lg:max-w-lg lg:pt-2"
+            >
+              From concept to launch, we deliver end-to-end digital solutions
+              that help your business stand out and grow online.
+            </motion.p>
+          </div>
+        </motion.div>
+
+        {/* Cards Grid */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={containerVariants}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
+        >
+          {services.map((service, i) => {
+            const ServiceIcon = service.icon;
+            const isActive = i === activeIndex;
+            return (
+              <motion.div
+                key={service.title}
+                variants={cardVariants}
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => handleTabClick(i)}
+                className={`group relative flex flex-col gap-4 bg-[#111D33] rounded-2xl p-6 lg:p-8 cursor-pointer transition-all duration-500 border ${
+                  isActive
+                    ? "border-blue-500 scale-[1.02] shadow-lg shadow-blue-500/10"
+                    : "border-[#1E2D4A] hover:border-blue-600/40"
+                }`}
+              >
+                {/* Icon */}
+                <div
+                  className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${
+                    isActive
+                      ? "bg-blue-600 text-white"
+                      : "bg-blue-600/10 border border-blue-600/20 text-blue-500"
                   }`}
                 >
-                  <span
-                    className={`text-xl md:text-2xl font-bold transition-colors font-avantt ${
-                      isActive ? "text-black" : "text-black/30"
-                    }`}
-                  >
-                    {service.title}
-                  </span>
-                  <span
-                    className={`flex items-center justify-center w-9 h-9 rounded-full transition-colors ${
-                      isActive
-                        ? "bg-electric text-white"
-                        : "bg-black/10 text-black/30"
-                    }`}
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                  <ServiceIcon className="w-6 h-6" />
+                </div>
 
-          {/* Right: Detail card */}
-          <div
-            className={`col-span-2 bg-gray rounded-2xl border border-black/10 overflow-hidden max-w-4xl lg:ml-8 transition-opacity duration-300 ${
-              isAnimating ? "opacity-0" : "opacity-100"
-            }`}
-          >
-            <div className="w-full px-8 pt-8">
-              <ActiveIcon className="w-8 h-8 text-black" strokeWidth={2} />
-            </div>
-            <div className="flex flex-col lg:flex-row gap-6 p-8">
-              {/* Text content */}
-              <div className="flex-1 flex flex-col gap-5 overflow-hidden max-w-lg">
-                <p className="text-black/60 text-sm leading-normal">
-                  {active.description}
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white font-avantt">
+                  {service.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
+                  {service.description}
                 </p>
-                <ul className="flex flex-col gap-2.5">
-                  {active.features.map((feature) => (
+
+                {/* Features list */}
+                <ul className="flex flex-col gap-2.5 mt-2">
+                  {service.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-2.5">
-                      <span className="w-2 h-2 rounded-full bg-electric/60 shrink-0" />
-                      <span className="text-sm font-semibold text-black">
+                      <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                      <span className="text-sm font-medium text-white">
                         {feature}
                       </span>
                     </li>
                   ))}
                 </ul>
-                <button className="mt-2 flex items-center gap-2 border-2 border-electric text-electric rounded-xl px-5 py-2.5 text-sm font-semibold w-fit hover:bg-electric hover:text-white transition-colors cursor-pointer">
-                  Learn More
-                  <span className="flex items-center justify-center w-6 h-6 bg-electric text-white rounded-full">
-                    <ChevronRight className="w-4 h-4" />
-                  </span>
-                </button>
-              </div>
-              {/* Image */}
-              <div className="relative h-60 md:h-60 lg:h-80 w-full lg:w-80 2xl:w-120 rounded-xl overflow-hidden shrink-0">
-                <Image
-                  src={active.image}
-                  alt={active.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );
