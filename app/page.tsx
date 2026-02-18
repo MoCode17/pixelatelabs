@@ -2,7 +2,7 @@ import Nav from "@/components/ui/Nav";
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import Featured from "@/components/sections/Featured";
-import WhyChooseUs from "@/components/sections/WhyChooseUs";
+import Testimonials from "@/components/sections/Testimonials";
 import Process from "@/components/sections/Process";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
@@ -15,7 +15,7 @@ export default function Home() {
       <Hero />
       <Services />
       <Featured />
-      <WhyChooseUs />
+      <Testimonials />
       <Process />
       <FinalCTA />
       <Footer />

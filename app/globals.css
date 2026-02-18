@@ -42,6 +42,7 @@ body {
   --color-electric: #0066ff;
   --color-snow: #ffffff;
   --color-gray: #bdc0c7;
+  --color-navy: #0B1121;
 
   /* Background/Foreground */
   --color-background: var(--background);

@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
 import icon from "@/public/images/icon.svg";
+import HEA from "@/public/images/HEA-Hero.png";
 
 interface Testimonial {
   id: string;
@@ -68,13 +69,35 @@ const stats = [
   { value: "24/7", label: "Support" },
 ];
 
+const CYCLE_INTERVAL = 10000;
+
 const TestimonialsSection = ({
-  badge = "WHY CHOOSE US",
-  title = "Why Melbourne Businesses Choose Us",
-  subtitle = "We're not just a web design agency — we're your growth partner. Here's what our clients have to say about working with Pixelate Labs.",
+  badge = "Client Stories",
+  title = "Loved by Melbourne Businesses",
+  subtitle = "Don't just take our word for it—hear what our clients have to say about working with us.",
   testimonials = defaultTestimonials,
 }: TestimonialsSectionProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    }, CYCLE_INTERVAL);
+  }, []);
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [resetTimer]);
+
+  const handleTabClick = (i: number) => {
+    setActiveIndex(i);
+    resetTimer();
+  };
 
   // Animation variants — matching Featured section patterns
   const containerVariants = {
@@ -124,7 +147,7 @@ const TestimonialsSection = ({
   const activeTestimonial = testimonials[activeIndex];
 
   return (
-    <section className="w-full bg-[#0B1121] py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-navy py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -167,8 +190,11 @@ const TestimonialsSection = ({
           viewport={{ once: true, margin: "-50px" }}
           variants={containerVariants}
         >
-          <motion.div variants={cardVariants}>
-            <div className="relative bg-[#111D33] border border-[#1E2D4A] rounded-2xl p-8 sm:p-10 lg:p-12 mb-6">
+          <motion.div
+            variants={cardVariants}
+            className="bg-navy border border-white/20 rounded-2xl overflow-hidden"
+          >
+            <div className="relative p-8 sm:p-8 lg:p-8">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTestimonial.id}
@@ -177,35 +203,40 @@ const TestimonialsSection = ({
                   exit={testimonialTransition.exit}
                   transition={testimonialTransition.transition}
                 >
-                  {/* Stars */}
-                  <div className="flex items-center gap-1 mb-6">
-                    {Array.from({ length: activeTestimonial.rating }).map(
-                      (_, i) => (
-                        <Star
-                          key={i}
-                          className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                        />
-                      )
-                    )}
-                  </div>
-
-                  {/* Quote */}
-                  <blockquote className="text-lg sm:text-xl lg:text-2xl text-white leading-relaxed mb-8 font-medium">
-                    &ldquo;{activeTestimonial.quote}&rdquo;
-                  </blockquote>
-
-                  {/* Author */}
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
-                      {activeTestimonial.initials}
+                  <div className="flex gap-12 items-center">
+                    <div className="relative w-full h-[400px]">
+                      <Image src={HEA} alt="HEA" fill objectFit="contain" />
                     </div>
                     <div>
-                      <p className="text-white font-semibold text-base">
-                        {activeTestimonial.name}
-                      </p>
-                      <p className="text-gray-400 text-sm">
-                        {activeTestimonial.role}
-                      </p>
+                      {/* Stars */}
+                      <div className="flex items-center gap-1 mb-6">
+                        {Array.from({ length: activeTestimonial.rating }).map(
+                          (_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                            />
+                          )
+                        )}
+                      </div>
+                      {/* Quote */}
+                      <blockquote className="text-lg sm:text-xl lg:text-2xl text-white leading-relaxed mb-8 font-medium">
+                        &ldquo;{activeTestimonial.quote}&rdquo;
+                      </blockquote>
+                      {/* Author */}
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                          {activeTestimonial.initials}
+                        </div>
+                        <div>
+                          <p className="text-white font-semibold text-base">
+                            {activeTestimonial.name}
+                          </p>
+                          <p className="text-gray-400 text-sm">
+                            {activeTestimonial.role}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -213,15 +244,15 @@ const TestimonialsSection = ({
             </div>
 
             {/* Testimonial Tabs */}
-            <div className="flex flex-wrap gap-3 mb-12 lg:mb-16">
+            <div className="flex flex-wrap justify-stretch">
               {testimonials.map((testimonial, index) => (
                 <button
                   key={testimonial.id}
-                  onClick={() => setActiveIndex(index)}
-                  className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
+                  onClick={() => handleTabClick(index)}
+                  className={`grow-1 px-5 py-2.5 text-sm font-medium transition-all duration-300 cursor-pointer ${
                     index === activeIndex
-                      ? "bg-blue-600 text-white shadow-lg shadow-blue-600/25"
-                      : "bg-[#111D33] text-gray-400 border border-[#1E2D4A] hover:border-blue-600/40 hover:text-white"
+                      ? "bg-[#081640] text-white shadow-lg shadow-blue-600/25"
+                      : "text-gray-400 border border-[#1E2D4A] hover:border-blue-600/40 hover:text-white"
                   }`}
                 >
                   {testimonial.name}
@@ -237,15 +268,15 @@ const TestimonialsSection = ({
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 pt-8 border-t border-[#1E2D4A]"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 pt-8"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               variants={fadeInUpVariants}
-              className="text-center"
+              className="text-center border border-white/20 rounded-lg p-4"
             >
-              <p className="text-3xl sm:text-4xl font-bold text-white mb-1">
+              <p className="text-3xl sm:text-4xl font-bold text-white pb-2 mb-2 border-b border-white/20">
                 {stat.value}
               </p>
               <p className="text-sm text-gray-400">{stat.label}</p>
