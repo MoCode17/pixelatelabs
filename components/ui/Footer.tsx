@@ -2,6 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
+import logo from "@/public/images/PixelateLogoOrange.svg";
+import PixelateLogoGray from "@/public/images/PixelateLogoGray.svg";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -78,11 +80,11 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Your Email…"
-                className="flex-1 px-5 py-3.5 rounded-full border border-gray-200 bg-gray-50 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#4169E1] focus:ring-2 focus:ring-[#4169E1]/20 transition-all"
+                className="flex-1 px-5 py-3.5 rounded-full border border-gray-200 bg-gray-50 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#FF6B2C] focus:ring-2 focus:ring-[#FF6B2C]/20 transition-all"
               />
               <button
                 aria-label="Subscribe"
-                className="flex-shrink-0 w-12 h-12 rounded-full bg-[#4169E1] flex items-center justify-center hover:bg-[#3558c0] transition-colors cursor-pointer"
+                className="flex-shrink-0 w-12 h-12 rounded-full bg-[#FF6B2C] flex items-center justify-center hover:bg-brand-dark transition-colors cursor-pointer"
               >
                 <ArrowRight className="w-5 h-5 text-white" />
               </button>
@@ -91,7 +93,7 @@ const Footer = () => {
               By subscribing you agree to with our{" "}
               <a
                 href="#"
-                className="text-[#4169E1] underline hover:text-[#3558c0] transition-colors"
+                className="text-[#FF6B2C] underline hover:text-brand-dark transition-colors"
               >
                 Privacy Policy
               </a>
@@ -119,7 +121,7 @@ const Footer = () => {
             {/* Logo */}
             <div className="relative w-[160px] h-[40px]">
               <Image
-                src="/images/Asset 7@3x.png"
+                src={logo}
                 alt="Pixelate"
                 fill
                 className="object-contain object-left"
@@ -143,9 +145,9 @@ const Footer = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="group inline-flex items-center gap-3 bg-[#4169E1] text-white font-semibold text-sm px-6 py-3.5 rounded-full hover:bg-[#3558c0] transition-colors cursor-pointer">
+            <button className="group inline-flex items-center gap-3 bg-[#FF6B2C] text-white font-semibold text-sm px-6 py-3.5 rounded-full hover:bg-brand-dark transition-colors cursor-pointer">
               Get Your Free Consultation
-              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#3558c0] group-hover:bg-[#2a49a3] transition-colors">
+              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-brand-dark group-hover:bg-[#d44e15] transition-colors">
                 <ArrowRight className="w-4 h-4 text-white" />
               </span>
             </button>
@@ -153,15 +155,13 @@ const Footer = () => {
 
           {/* Middle Column – Services */}
           <motion.div variants={fadeInUpVariants}>
-            <h4 className="text-base font-bold text-gray-900 mb-5">
-              Services
-            </h4>
+            <h4 className="text-base font-bold text-gray-900 mb-5">Services</h4>
             <ul className="space-y-3.5">
               {services.map((service) => (
                 <li key={service}>
                   <a
                     href="#"
-                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                    className="text-sm text-gray-600 hover:text-brand-dark transition-colors"
                   >
                     {service}
                   </a>
@@ -175,17 +175,17 @@ const Footer = () => {
             <h4 className="text-base font-bold text-gray-900 mb-5">Contact</h4>
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-[#4169E1] flex-shrink-0" />
+                <Phone className="w-5 h-5 text-[#FF6B2C] flex-shrink-0" />
                 <span className="text-sm text-gray-600">+61 400 123 456</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-[#4169E1] flex-shrink-0" />
+                <Mail className="w-5 h-5 text-[#FF6B2C] flex-shrink-0" />
                 <span className="text-sm text-gray-600">
                   support@pixelatelabs.com.au
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-[#4169E1] flex-shrink-0 mt-0.5" />
+                <Clock className="w-5 h-5 text-[#FF6B2C] flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-gray-600">
                   <p>Monday – Friday</p>
                   <p>9:00 AM – 6:00 PM (AEST)</p>
@@ -241,12 +241,14 @@ const Footer = () => {
 
       {/* ─── Section 4: Decorative Background Text ─── */}
       <div className="relative w-full overflow-hidden" aria-hidden="true">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-20">
-          <p
-            className="text-[15vw] lg:text-[12vw] font-avantt font-bold text-gray-100 leading-none tracking-tight select-none whitespace-nowrap translate-y-[40%]"
-          >
-            PIXELATE
-          </p>
+        <div className="max-w-7xl mx-auto flex justify-center px-6 sm:px-10 lg:px-20">
+          <Image
+            src={PixelateLogoGray}
+            alt="Pixelate Logo"
+            width={800}
+            height={200}
+            className="object-cover translate-y-[40%]"
+          />
         </div>
       </div>
     </footer>

@@ -5,7 +5,7 @@ import Featured from "@/components/sections/Featured";
 import Testimonials from "@/components/sections/Testimonials";
 import Process from "@/components/sections/Process";
 import FinalCTA from "@/components/sections/FinalCTA";
-import Footer from "@/components/sections/Footer";
+import Footer from "@/components/ui/Footer";
 
 export default function Home() {
   return (

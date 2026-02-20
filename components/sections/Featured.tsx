@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import icon from "@/public/images/icon.svg";
+import icon from "@/public/images/iconDark.svg";
 
 // Props interface for future customization
 export interface FeaturedSectionProps {
@@ -92,7 +92,7 @@ const FeaturedSection = ({
   };
 
   return (
-    <section className="w-full bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-snow py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -104,7 +104,7 @@ const FeaturedSection = ({
         >
           {/* Badge */}
           <motion.div variants={fadeInUpVariants} className="mb-4">
-            <span className="inline-flex items-center gap text-lg font-bold tracking-wider text-blue-600 uppercase">
+            <span className="inline-flex items-center gap text-lg font-bold tracking-wider text-brand uppercase">
               <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
               {badge}
             </span>
@@ -145,12 +145,12 @@ const FeaturedSection = ({
               className="group relative flex flex-col gap-4 bg-transparent rounded-2xl"
             >
               {/* Image Container */}
-              <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-100">
+              <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden hover:shadow-xl hover:border hover:border-brand transition-all duration-300">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover rounded-2xl z-10"
+                  className="object-cover z-10"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 />
               </div>
@@ -162,7 +162,7 @@ const FeaturedSection = ({
                   {project.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="text-xs font-medium text-gray-700 uppercase tracking-wide border border-gray-300 rounded-full px-2 py-1 transition-colors duration-300 group-hover:border-blue-600 group-hover:text-blue-600"
+                      className="text-xs font-medium text-gray-700 uppercase tracking-wide border border-gray-300 rounded-full px-2 py-1 transition-colors duration-300 group-hover:border-brand group-hover:text-brand"
                     >
                       {tag}
                     </span>
@@ -172,7 +172,7 @@ const FeaturedSection = ({
                 {/* Title and Description */}
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors duration-300">
                       {project.title}
                     </h3>
                     <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
@@ -182,7 +182,7 @@ const FeaturedSection = ({
 
                   {/* Arrow Button */}
                   <button
-                    className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-blue-600 transition-all duration-300"
+                    className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-brand transition-all duration-300"
                     aria-label={`View ${project.title} project`}
                   >
                     <ArrowUpRight className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors duration-300" />
@@ -201,7 +201,7 @@ const FeaturedSection = ({
           variants={fadeInUpVariants}
           className="mt-12 lg:mt-16 text-center"
         >
-          <button className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 shadow-md hover:shadow-lg">
+          <button className="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white font-semibold rounded-full hover:bg-brand-dark transition-colors duration-300 shadow-md hover:shadow-lg">
             View All Projects
             <ArrowUpRight className="w-5 h-5" />
           </button>

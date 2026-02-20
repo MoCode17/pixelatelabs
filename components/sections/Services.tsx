@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Pen, Code, BarChart3 } from "lucide-react";
-import icon from "@/public/images/icon.svg";
+import icon from "@/public/images/iconDark.svg";
 
 const services = [
   {
@@ -29,18 +29,6 @@ const services = [
       "API Design & Integration",
       "Performance Optimization",
       "CMS & E-Commerce Solutions",
-    ],
-  },
-  {
-    title: "Digital Strategy",
-    icon: BarChart3,
-    description:
-      "Drive growth with data-driven digital strategies that maximize your online presence. We help you reach the right audience at the right time.",
-    features: [
-      "SEO & Content Strategy",
-      "Analytics & Reporting",
-      "Social Media Planning",
-      "Conversion Optimization",
     ],
   },
 ];
@@ -118,7 +106,7 @@ const Services = () => {
         >
           {/* Badge */}
           <motion.div variants={fadeInUpVariants} className="mb-4">
-            <span className="inline-flex items-center gap text-lg font-bold tracking-wider text-blue-600 uppercase">
+            <span className="inline-flex items-center gap text-lg font-bold tracking-wider text-brand uppercase">
               <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
               OUR SERVICES
             </span>
@@ -149,7 +137,7 @@ const Services = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-5"
         >
           {services.map((service, i) => {
             const ServiceIcon = service.icon;
@@ -158,22 +146,16 @@ const Services = () => {
               <motion.div
                 key={service.title}
                 variants={cardVariants}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
                 onClick={() => handleTabClick(i)}
-                className={`group relative flex flex-col gap-4 bg-[#111D33] rounded-2xl p-6 lg:p-8 cursor-pointer transition-all duration-500 border ${
-                  isActive
-                    ? "border-blue-500 scale-[1.02] shadow-lg shadow-blue-500/10"
-                    : "border-[#1E2D4A] hover:border-blue-600/40"
-                }`}
+                className={
+                  "group relative flex flex-col gap-4 bg-surface rounded-2xl p-6 lg:p-8 cursor-pointer transition-all duration-500 border border-dark-lighter hover:border-brand hover:-translate-y-[8px] hadow-lg shadow-brand/10 scale-[1.02]"
+                }
               >
                 {/* Icon */}
                 <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${
-                    isActive
-                      ? "bg-blue-600 text-white"
-                      : "bg-blue-600/10 border border-blue-600/20 text-blue-500"
-                  }`}
+                  className={
+                    "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 bg-brand/10 hover:bg-brand hover:text-white border border-brand/20 text-brand-light"
+                  }
                 >
                   <ServiceIcon className="w-6 h-6" />
                 </div>
@@ -192,7 +174,7 @@ const Services = () => {
                 <ul className="flex flex-col gap-2.5 mt-2">
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-2.5">
-                      <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-brand shrink-0" />
                       <span className="text-sm font-medium text-white">
                         {feature}
                       </span>

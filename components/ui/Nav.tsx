@@ -4,7 +4,8 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
-import logo from "@/public/images/PixelateLogoBlue.svg";
+import logo from "@/public/images/PixelateLogoOrange.svg";
+import { motion, useScroll, useTransform, vh } from "framer-motion";
 
 interface DropdownColumn {
   title?: string;
@@ -84,10 +85,19 @@ const Navbar = () => {
     return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg.trim())}`;
   }, []);
 
+  // Scroll-based background spacer height
+  const ref = useRef(null);
+  const { scrollY } = useScroll({ target: ref });
+  const spacerHeight = useTransform(scrollY, [0, 400], [16, 0]);
+
   return (
     <nav className="fixed top-0 left-0 right-0 bg-transparent z-100">
       {/* Spacer */}
-      <div className="h-4 bg-snow" />
+      <motion.div
+        ref={ref}
+        className="bg-snow"
+        style={{ height: spacerHeight }}
+      />
       {/* Main Nav Container with surrounding divs */}
       <div className="flex w-full px-4 justify-center md:justify-start">
         {/* Left Curved Cutout */}
@@ -187,7 +197,7 @@ const Navbar = () => {
             <div className="hidden lg:block">
               <Link
                 href="/get-started"
-                className="inline-flex items-center px-6 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center px-6 py-2.5 bg-[#FF6B2C] text-white text-sm font-medium rounded-lg hover:bg-brand-dark transition-colors"
               >
                 Get Started
               </Link>
@@ -301,7 +311,7 @@ const Navbar = () => {
                   >
                     {link.label}
                   </Link>
-                )),
+                ))
               )}
             </div>
 
@@ -309,7 +319,7 @@ const Navbar = () => {
             <div className="pt-4">
               <Link
                 href="/get-started"
-                className="block w-full text-center px-6 py-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                className="block w-full text-center px-6 py-3 bg-[#FF6B2C] text-white text-sm font-medium rounded-lg hover:bg-brand-dark transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Get Started

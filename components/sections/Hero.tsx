@@ -22,12 +22,12 @@ const Hero = () => {
 
         {/* Content */}
         <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16 lg:px-20 py-6">
-          <p className="text-white text-md md:text-lg font-extralight font-['Geist'] leading-relaxed">
+          <p className="text-white text-md md:text-lg font-extralight font-outfit leading-relaxed">
             Hey 👋 We&apos;re Pixelate!
           </p>
           {/* Headline */}
-          <div className="text-yellow-400 text-4xl md:text-5xl lg:text-6xl  leading-tight mb-4 font-player">
-            &lt;Web Design/&gt;
+          <div className="text-solar text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 font-avantt font-bold">
+            &lt;Web Design/&gt; 🥶
           </div>
           <div className="flex flex-col items-start pl-24">
             {/* Main Title */}
@@ -37,7 +37,7 @@ const Hero = () => {
               Tech Headaches
             </h1>
             {/* Description */}
-            <p className="text-white/90 text-base md:text-lg font-normal font-['Geist'] leading-relaxed max-w-[650px] mb-8">
+            <p className="text-white/90 text-base md:text-lg font-normal font-outfit leading-relaxed max-w-[650px] mb-8">
               Melbourne&apos;s favorite web design agency creating
               high-performance websites that convert visitors into customers. We
               help growing businesses stand out online with stunning design,
@@ -46,7 +46,7 @@ const Hero = () => {
             {/* CTAs and Social Proof */}
             <div className="flex flex-wrap items-center gap-6">
               {/* CTA Buttons */}
-              <button className="h-12 md:h-14 px-6 bg-blue-600 hover:bg-blue-700 transition-colors rounded-xl flex justify-center items-center gap-3">
+              <button className="h-12 md:h-14 px-6 bg-brand hover:bg-brand-dark transition-colors rounded-xl flex justify-center items-center gap-3">
                 <span className="text-white text-base md:text-lg font-bold ">
                   Start Your Project
                 </span>
@@ -66,7 +66,7 @@ const Hero = () => {
                   </svg>
                 </div>
               </button>
-              <button className="h-12 md:h-14 px-6 bg-yellow-400 hover:bg-yellow-500 transition-colors rounded-xl flex justify-center items-center gap-3">
+              <button className="h-12 md:h-14 px-6 bg-solar hover:bg-[#F5C842] transition-colors rounded-xl flex justify-center items-center gap-3">
                 <span className="text-white text-base md:text-lg font-bold">
                   View Our Work
                 </span>
@@ -108,10 +108,10 @@ const Hero = () => {
                   />
                 </div>
                 <div className="text-white/90">
-                  <p className="text-sm md:text-base font-normal font-['Geist']">
+                  <p className="text-sm md:text-base font-normal font-outfit">
                     Trusted by <span className="font-bold">100+</span>
                   </p>
-                  <p className="text-sm md:text-base font-bold font-['Geist']">
+                  <p className="text-sm md:text-base font-bold font-outfit">
                     Melbourne businesses
                   </p>
                 </div>

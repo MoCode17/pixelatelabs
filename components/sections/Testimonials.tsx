@@ -147,7 +147,7 @@ const TestimonialsSection = ({
   const activeTestimonial = testimonials[activeIndex];
 
   return (
-    <section className="w-full bg-navy py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-midnight py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -159,7 +159,7 @@ const TestimonialsSection = ({
         >
           {/* Badge */}
           <motion.div variants={fadeInUpVariants} className="mb-4">
-            <span className="inline-flex items-center text-lg font-bold tracking-wider text-blue-500 uppercase">
+            <span className="inline-flex items-center text-lg font-bold tracking-wider text-brand-light uppercase">
               <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
               {badge}
             </span>
@@ -192,7 +192,7 @@ const TestimonialsSection = ({
         >
           <motion.div
             variants={cardVariants}
-            className="bg-navy border border-white/20 rounded-2xl overflow-hidden"
+            className="bg-midnight border border-white/10 rounded-2xl overflow-hidden"
           >
             <div className="relative p-8 sm:p-8 lg:p-8">
               <AnimatePresence mode="wait">
@@ -225,7 +225,7 @@ const TestimonialsSection = ({
                       </blockquote>
                       {/* Author */}
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand to-brand-dark flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                           {activeTestimonial.initials}
                         </div>
                         <div>
@@ -251,8 +251,8 @@ const TestimonialsSection = ({
                   onClick={() => handleTabClick(index)}
                   className={`grow-1 px-5 py-2.5 text-sm font-medium transition-all duration-300 cursor-pointer ${
                     index === activeIndex
-                      ? "bg-[#081640] text-white shadow-lg shadow-blue-600/25"
-                      : "text-gray-400 border border-[#1E2D4A] hover:border-blue-600/40 hover:text-white"
+                      ? "bg-dark-lighter text-white shadow-lg shadow-brand/25"
+                      : "text-gray-400 border border-dark-lighter hover:border-brand/40 hover:text-white"
                   }`}
                 >
                   {testimonial.name}

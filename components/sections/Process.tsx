@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Check, ArrowUpRight } from "lucide-react";
-import icon from "@/public/images/icon.svg";
+import icon from "@/public/images/iconDark.svg";
 
 interface ProcessStep {
   number: string;
@@ -133,9 +133,9 @@ const ProcessSection = () => {
     <section ref={sectionRef} className="w-full bg-gray-50 relative">
       {/* Main Content with Sticky Layout */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24 lg:items-start">
           {/* Left Column — Sticky on Desktop */}
-          <div className="lg:sticky lg:top-0 lg:h-screen lg:flex lg:flex-col lg:justify-center py-16 sm:py-20 lg:py-0">
+          <div className="lg:sticky lg:top-0 lg:flex lg:flex-col lg:justify-center py-16 sm:py-20 lg:py-24">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -144,7 +144,7 @@ const ProcessSection = () => {
             >
               {/* Badge */}
               <motion.div variants={fadeInUpVariants} className="mb-4">
-                <span className="inline-flex items-center text-lg font-bold tracking-wider text-blue-600 uppercase">
+                <span className="inline-flex items-center text-lg font-bold tracking-wider text-brand uppercase">
                   <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
                   OUR PROCESS
                 </span>
@@ -171,7 +171,7 @@ const ProcessSection = () => {
 
               {/* CTA Button */}
               <motion.div variants={fadeInUpVariants}>
-                <button className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 shadow-md hover:shadow-lg">
+                <button className="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white font-semibold rounded-full hover:bg-brand-dark transition-colors duration-300 shadow-md hover:shadow-lg">
                   Start Your Project
                   <ArrowUpRight className="w-5 h-5" />
                 </button>
@@ -180,14 +180,11 @@ const ProcessSection = () => {
           </div>
 
           {/* Right Column — Scrolling Steps */}
-          <div
-            ref={timelineRef}
-            className="relative pb-16 sm:pb-20 lg:py-24"
-          >
+          <div ref={timelineRef} className="relative pb-16 sm:pb-20 lg:py-24">
             {/* Timeline Line (Desktop) */}
             <div className="hidden lg:block absolute left-0 top-24 bottom-24 w-px bg-gray-200">
               <motion.div
-                className="w-full bg-blue-600 origin-top"
+                className="w-full bg-brand origin-top"
                 style={{ height: lineHeight }}
               />
             </div>
@@ -204,20 +201,20 @@ const ProcessSection = () => {
                   className="relative lg:pl-12"
                 >
                   {/* Timeline Dot (Desktop) */}
-                  <div className="hidden lg:flex absolute left-0 top-8 w-[9px] h-[9px] -translate-x-1 rounded-full bg-blue-600 ring-4 ring-gray-50 z-10" />
+                  <div className="hidden lg:flex absolute left-0 top-8 w-[9px] h-[9px] -translate-x-1 rounded-full bg-brand ring-4 ring-gray-50 z-10" />
 
                   {/* Step Card */}
                   <div
-                    className={`group bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all duration-300 ${
+                    className={`group bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md hover:border-brand/20 transition-all duration-300 ${
                       index < steps.length - 1 ? "lg:mb-8" : ""
                     }`}
                   >
                     {/* Step Number & Title */}
                     <div className="flex items-start gap-4 mb-4">
-                      <span className="text-sm font-bold text-blue-600 bg-blue-50 rounded-full px-3 py-1 flex-shrink-0">
+                      <span className="text-sm font-bold text-brand bg-[#FFF0E8] rounded-full px-3 py-1 flex-shrink-0">
                         {step.number}
                       </span>
-                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-brand transition-colors duration-300">
                         {step.title}
                       </h3>
                     </div>
@@ -231,8 +228,8 @@ const ProcessSection = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:pl-14">
                       {step.items.map((item, i) => (
                         <div key={i} className="flex items-center gap-2.5">
-                          <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                            <Check className="w-3 h-3 text-blue-600" />
+                          <div className="w-5 h-5 rounded-full bg-[#FFF0E8] flex items-center justify-center flex-shrink-0">
+                            <Check className="w-3 h-3 text-brand" />
                           </div>
                           <span className="text-sm text-gray-700">{item}</span>
                         </div>

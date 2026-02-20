@@ -3,7 +3,7 @@
 /* Prevent horizontal overflow on mobile */
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
 }
 
@@ -19,10 +19,10 @@ body {
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-space-mono);
   --font-avantt: var(--font-avantt-trial);
-  --font-player: var(--font-press-start-2p);
+  --font-space-mono: var(--font-space-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,11 +38,24 @@ body {
 }
 
 @theme {
-  /* Custom Colors */
-  --color-electric: #0066ff;
-  --color-snow: #ffffff;
-  --color-gray: #bdc0c7;
-  --color-navy: #0B1121;
+  /* Brand Colors */
+  --color-brand: #FF6B2C;
+  --color-brand-dark: #E85A1E;
+  --color-brand-light: #FF8A56;
+
+  /* Background Colors */
+  --color-midnight: #1A1A2E;
+  --color-surface: #222240;
+  --color-dark-lighter: #2D2D4A;
+
+  /* Accent Colors */
+  --color-solar: #FFD166;
+  --color-coral: #FF6B6B;
+  --color-orange-100: #FFF0E8;
+
+  /* Neutral Colors */
+  --color-snow: #F8F8FC;
+  --color-gray: #BCC3CE;
 
   /* Background/Foreground */
   --color-background: var(--background);

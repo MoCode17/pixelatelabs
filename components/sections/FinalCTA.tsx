@@ -28,7 +28,7 @@ const fadeInUpVariants = {
 
 const FinalCTA = () => {
   return (
-    <section className="relative w-full bg-[#0B1121] py-24 sm:py-32 lg:py-40 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative w-full bg-midnight py-24 sm:py-32 lg:py-40 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Dot grid pattern overlay */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -39,14 +39,14 @@ const FinalCTA = () => {
         }}
       />
 
-      {/* Top-center blue glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[128px] pointer-events-none" />
+      {/* Top-center orange glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/20 rounded-full blur-[128px] pointer-events-none" />
 
-      {/* Bottom-left blue glow */}
-      <div className="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/3 w-[400px] h-[400px] bg-blue-500/15 rounded-full blur-[100px] pointer-events-none" />
+      {/* Bottom-left orange glow */}
+      <div className="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/3 w-[400px] h-[400px] bg-brand/15 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Bottom-right blue glow */}
-      <div className="absolute bottom-0 right-0 translate-x-1/3 translate-y-1/3 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* Bottom-right orange glow */}
+      <div className="absolute bottom-0 right-0 translate-x-1/3 translate-y-1/3 w-[400px] h-[400px] bg-brand/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10 max-w-3xl mx-auto text-center">
@@ -59,7 +59,7 @@ const FinalCTA = () => {
         >
           {/* Retro Badge */}
           <motion.div variants={fadeInUpVariants} className="mb-6">
-            <span className="inline-block text-xs sm:text-sm font-player text-blue-400 tracking-wider uppercase">
+            <span className="inline-block text-xs sm:text-sm font-space-mono text-brand-light tracking-wider uppercase">
               {"// Start Your Project"}
             </span>
           </motion.div>
@@ -84,7 +84,7 @@ const FinalCTA = () => {
 
           {/* CTA Button */}
           <motion.div variants={fadeInUpVariants}>
-            <button className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 text-base sm:text-lg cursor-pointer">
+            <button className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-full hover:bg-brand-dark transition-colors duration-300 shadow-lg shadow-brand/25 hover:shadow-xl hover:shadow-brand/30 text-base sm:text-lg cursor-pointer">
               Start Your Project
               <ArrowUpRight className="w-5 h-5" />
             </button>
