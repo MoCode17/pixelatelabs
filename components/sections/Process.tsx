@@ -23,7 +23,7 @@ const steps: ProcessStep[] = [
       "You tell us what you do, who you want to attract, and what makes you better than the next guy. That's it. We take care of the strategy, the structure, and the words — you just talk, we listen.",
     items: [
       "What you do and who you serve",
-      "What do you actually want more of",
+      "What do you want more of",
       "What your competitors are doing (so we can do it better)",
     ],
   },
@@ -133,7 +133,7 @@ const ProcessSection = () => {
     <section ref={sectionRef} className="w-full bg-gray-50 relative">
       {/* Main Content with Sticky Layout */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24 lg:items-start">
+        <div className="lg:grid lg:grid-cols-2 lg:items-start">
           {/* Left Column — Sticky on Desktop */}
           <div className="lg:sticky lg:top-0 lg:flex lg:flex-col lg:justify-center py-16 sm:py-20 lg:py-24">
             <motion.div
@@ -206,7 +206,7 @@ const ProcessSection = () => {
 
                   {/* Step Card */}
                   <div
-                    className={`group bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-md hover:border-brand/20 transition-all duration-300 ${
+                    className={`group bg-white rounded-2xl p-6 sm:p-8 border border-black/10 hover:shadow-md hover:border-brand/20 transition-all ease-in-out duration-300 hover:translate-x-4 ${
                       index < steps.length - 1 ? "lg:mb-8" : ""
                     }`}
                   >
@@ -257,8 +257,8 @@ const ProcessSection = () => {
       </div>
 
       {/* Stats Row */}
-      <div className="border-t border-gray-200 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div className="bg-linear-to-r from-brand-dark to-solar">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -272,10 +272,10 @@ const ProcessSection = () => {
                 variants={fadeInUpVariants}
                 className="text-center"
               >
-                <p className="text-3xl sm:text-4xl font-bold text-gray-900 mb-1">
+                <p className="text-3xl sm:text-4xl font-bold text-gray-black mb-1">
                   {stat.value}
                 </p>
-                <p className="text-sm text-gray-500">{stat.label}</p>
+                <p className="text-sm text-midnight">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>

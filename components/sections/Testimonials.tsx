@@ -27,54 +27,54 @@ const defaultTestimonials: Testimonial[] = [
   {
     id: "1",
     name: "Jesse Heffernan",
-    role: "Founder, Heffernan Homes",
+    role: "Owner, Heffernan Homes",
     quote:
-      "Pixelate Labs completely transformed our online presence. Our new website has generated 3x more leads than our previous site. Their attention to detail and understanding of our brand was exceptional.",
+      "I was sceptical at first — $499 felt too good to be true. But the site went live in under a week and I had my first enquiry two days later. It's paid for itself ten times over.",
     rating: 5,
     initials: "JH",
   },
   {
     id: "2",
     name: "James Chen",
-    role: "CEO, Chen Enterprises",
+    role: "Owner, Chen Electrical",
     quote:
-      "Working with Pixelate was an absolute game-changer. They delivered a world-class e-commerce platform that increased our conversion rate by 150%. Professional, creative, and always on time.",
+      "Other agencies wanted $4k and six weeks. Pixelate had me live in 7 days and the phone hasn't stopped. Wish I'd done it two years ago.",
     rating: 5,
     initials: "JC",
   },
   {
     id: "3",
     name: "Emily Rodriguez",
-    role: "Marketing Director, Bloom & Co",
+    role: "Director, Bloom & Co",
     quote:
-      "The team at Pixelate Labs truly understands modern web design. They built us a stunning website that perfectly captures our brand identity and has significantly improved our customer engagement.",
+      "I handed over some notes on a Monday and by Friday I had a website I was actually proud to send people to. The whole thing was done-for-you. No stress at all.",
     rating: 5,
     initials: "ER",
   },
   {
     id: "4",
     name: "Michael Thompson",
-    role: "Owner, Thompson Legal",
+    role: "Owner, Thompson Plumbing",
     quote:
-      "From initial consultation to final launch, Pixelate Labs exceeded every expectation. Our website now ranks on the first page of Google and brings in consistent leads every week.",
+      "I used to lose jobs to competitors just because they had a better-looking site. Now I'm the one winning those quotes. First page of Google within a month too.",
     rating: 5,
     initials: "MT",
   },
 ];
 
 const stats = [
-  { value: "15+", label: "Happy Clients" },
-  { value: "100%", label: "Projects Delivered on time" },
-  { value: "5.0", label: "Average Rating" },
-  { value: "24/7", label: "Support" },
+  { value: "100+", label: "Melbourne Businesses" },
+  { value: "7 Days", label: "Average Time To Live" },
+  { value: "5.0 ★", label: "Average Client Rating" },
+  { value: "$499", label: "Starting Price" },
 ];
 
 const CYCLE_INTERVAL = 10000;
 
 const TestimonialsSection = ({
   badge = "Client Stories",
-  title = "Loved by Melbourne Businesses",
-  subtitle = "Don't just take our word for it—hear what our clients have to say about working with us.",
+  title = "<Don't Take/>\nOur word for it",
+  subtitle = "Real businesses. Real results. Here's what happens when your website actually works.",
   testimonials = defaultTestimonials,
 }: TestimonialsSectionProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -169,7 +169,7 @@ const TestimonialsSection = ({
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
             <motion.h2
               variants={fadeInUpVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-2xl"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-2xl whitespace-pre-line"
             >
               {title}
             </motion.h2>

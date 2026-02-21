@@ -31,7 +31,7 @@ const FinalCTA = () => {
     <section className="relative w-full bg-midnight py-24 sm:py-32 lg:py-40 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Dot grid pattern overlay */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.1]"
         style={{
           backgroundImage:
             "radial-gradient(circle, #ffffff 1px, transparent 1px)",
@@ -60,7 +60,7 @@ const FinalCTA = () => {
           {/* Retro Badge */}
           <motion.div variants={fadeInUpVariants} className="mb-6">
             <span className="inline-block text-xs sm:text-sm font-space-mono text-brand-light tracking-wider uppercase">
-              {"// Start Your Project"}
+              {"// GET STARTED"}
             </span>
           </motion.div>
 
@@ -69,7 +69,8 @@ const FinalCTA = () => {
             variants={fadeInUpVariants}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-avantt tracking-tight text-white mb-6"
           >
-            Ready to Elevate Your Digital Presence?
+            &lt;Your Competitors/&gt; <br />
+            Are Online Right Now.
           </motion.h2>
 
           {/* Subtitle */}
@@ -77,15 +78,16 @@ const FinalCTA = () => {
             variants={fadeInUpVariants}
             className="text-base sm:text-lg text-gray-400 leading-relaxed max-w-2xl mb-10"
           >
-            Partner with Melbourne&apos;s most trusted web design agency. We
-            transform your vision into a high-performance digital experience
-            that drives real results.
+            Every day without a website is a job going to someone else. For
+            $499, we'll have you live in 7 days — with a site that works as hard
+            as you do. Partner with Melbourne&apos;s most trusted web design
+            agency.
           </motion.p>
 
           {/* CTA Button */}
           <motion.div variants={fadeInUpVariants}>
             <button className="inline-flex items-center gap-2 px-8 py-4 bg-brand text-white font-semibold rounded-full hover:bg-brand-dark transition-colors duration-300 shadow-lg shadow-brand/25 hover:shadow-xl hover:shadow-brand/30 text-base sm:text-lg cursor-pointer">
-              Start Your Project
+              Start My Project
               <ArrowUpRight className="w-5 h-5" />
             </button>
           </motion.div>
@@ -95,7 +97,8 @@ const FinalCTA = () => {
             variants={fadeInUpVariants}
             className="mt-6 text-sm text-gray-500"
           >
-            No commitment required &mdash; free consultation included.
+            Free 30-min consultation first. No lock-in. No commitment. Just
+            results.
           </motion.p>
         </motion.div>
       </div>

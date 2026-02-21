@@ -22,8 +22,8 @@ export interface FeaturedSectionProps {
 }
 
 const FeaturedSection = ({
-  badge = "FEATURED WORK",
-  title = "<Crafting Digital Experiences/>",
+  badge = "OUR WORK",
+  title = "<Results/>",
   subtitle = "From startups to enterprises, we transform ideas into pixel-perfect experiences that drive real business results.",
   projects = [
     {

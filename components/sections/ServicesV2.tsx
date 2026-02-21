@@ -162,7 +162,7 @@ const ServicesV2 = () => {
                 </h3>
 
                 {/* Subtitle */}
-                <h4 className="text-lg font-bold text-brand-dark font-avantt">
+                <h4 className="text-lg font-bold text-brand font-avantt">
                   {service.subtitle}
                 </h4>
 
