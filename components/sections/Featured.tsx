@@ -23,7 +23,7 @@ export interface FeaturedSectionProps {
 
 const FeaturedSection = ({
   badge = "FEATURED WORK",
-  title = "Crafting Digital Experiences",
+  title = "<Crafting Digital Experiences/>",
   subtitle = "From startups to enterprises, we transform ideas into pixel-perfect experiences that drive real business results.",
   projects = [
     {
@@ -114,7 +114,7 @@ const FeaturedSection = ({
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
             <motion.h2
               variants={fadeInUpVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 max-w-2xl"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 max-w-2xl"
             >
               {title}
             </motion.h2>

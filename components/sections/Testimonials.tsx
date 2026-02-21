@@ -203,9 +203,9 @@ const TestimonialsSection = ({
                   exit={testimonialTransition.exit}
                   transition={testimonialTransition.transition}
                 >
-                  <div className="flex gap-12 items-center">
-                    <div className="relative w-full h-[400px]">
-                      <Image src={HEA} alt="HEA" fill objectFit="contain" />
+                  <div className="flex flex-col md:flex-row gap-12 items-center">
+                    <div className="relative w-full">
+                      <Image src={HEA} alt="HEA" className="w-full h-auto" />
                     </div>
                     <div>
                       {/* Stars */}
@@ -214,7 +214,7 @@ const TestimonialsSection = ({
                           (_, i) => (
                             <Star
                               key={i}
-                              className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                              className="w-5 h-5 fill-[#FFC107] text-[#FFC107]"
                             />
                           )
                         )}

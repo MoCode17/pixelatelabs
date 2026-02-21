@@ -1,6 +1,7 @@
 import Nav from "@/components/ui/Nav";
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
+import ServicesV2 from "@/components/sections/ServicesV2";
 import Featured from "@/components/sections/Featured";
 import Testimonials from "@/components/sections/Testimonials";
 import Process from "@/components/sections/Process";
@@ -12,7 +13,7 @@ export default function Home() {
     <div className="relative">
       <Nav />
       <Hero />
-      <Services />
+      <ServicesV2 />
       <Featured />
       <Testimonials />
       <Process />

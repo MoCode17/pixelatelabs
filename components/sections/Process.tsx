@@ -9,78 +9,78 @@ import icon from "@/public/images/iconDark.svg";
 interface ProcessStep {
   number: string;
   title: string;
+  subtitle?: string;
   description: string;
   items: string[];
 }
 
 const steps: ProcessStep[] = [
   {
-    number: "01",
-    title: "Discovery & Strategy",
+    number: "1",
+    title: "We Get To Know Your Business",
+    subtitle: "30 min kickoff call",
     description:
-      "We begin by understanding your business, goals, and target audience to create a tailored digital strategy that drives results.",
+      "You tell us what you do, who you want to attract, and what makes you better than the next guy. That's it. We take care of the strategy, the structure, and the words — you just talk, we listen.",
     items: [
-      "Business analysis & goals review",
-      "Competitor research & market analysis",
-      "Target audience identification",
-      "Project scope & timeline planning",
+      "What you do and who you serve",
+      "What do you actually want more of",
+      "What your competitors are doing (so we can do it better)",
     ],
   },
   {
-    number: "02",
-    title: "Design & Prototyping",
+    number: "2",
+    title: "We Design & Build It",
     description:
-      "Our designers craft stunning visual concepts and interactive prototypes that bring your vision to life before development begins.",
+      "While you're working on your business, we're building. Custom design, mobile-optimised, with a contact form wired directly to your phone. No templates. No cookie-cutter layouts.",
     items: [
-      "Wireframing & information architecture",
-      "UI/UX design in Figma",
-      "Interactive prototype creation",
-      "Client review & iteration",
+      "Custom design, not a drag-and-drop template",
+      "Mobile-first (because that's where your customers are)",
+      "Quote request form set up and tested",
     ],
   },
   {
-    number: "03",
-    title: "Development & Testing",
+    number: "3",
+    title: "You Review, We Refine",
+    subtitle: "30 min revision call",
     description:
-      "We build your website using cutting-edge technologies, ensuring peak performance, security, and cross-device compatibility.",
+      'We show you the site. You tell us what you love, what you\'d tweak, and we tighten it up. One focused call. No endless email chains, no "can we just change one more thing" spirals.',
     items: [
-      "Frontend development (React/Next.js)",
-      "Backend integration & APIs",
-      "Cross-browser & device testing",
-      "Performance optimization",
+      "Live walkthrough of your new site",
+      "One round of revisions included",
+      "You sign off, we prep for launch",
     ],
   },
   {
-    number: "04",
-    title: "Launch & Optimization",
+    number: "4",
+    title: "Your Site Goes Live",
     description:
-      "Your website goes live with comprehensive SEO, analytics, and performance monitoring to ensure a flawless launch.",
+      "Domain connected. Hosting sorted. Site live. We do a final check on speed, mobile display, and form submissions — then we hand you the keys. From here, every Google search for your business in your area is a chance for a new customer to find you.",
     items: [
-      "Final QA & bug fixes",
-      "Domain & hosting setup",
+      "Domain & hosting fully set up",
+      "Speed and mobile tested",
       "SEO optimization & analytics",
       "Go-live & monitoring",
     ],
   },
   {
-    number: "05",
+    number: "5",
     title: "Ongoing Support",
+    subtitle: "We've Got Your Back",
     description:
-      "We provide continuous maintenance, updates, and support to keep your website running smoothly and growing with your business.",
+      "Got a question? Something needs updating? We're one message away. No retainers, no hourly rates — 3 months of support is baked into your $499. After that, we offer simple monthly plans if you want us to stick around.",
     items: [
-      "Regular maintenance & updates",
-      "Performance monitoring",
-      "Content updates & changes",
-      "Priority technical support",
+      "3 months support included, no extra cost",
+      "Content and copy updates when you need them",
+      "Priority response within 48 hours",
     ],
   },
 ];
 
 const processStats = [
-  { value: "48hrs", label: "Response Time" },
+  { value: "7 Days", label: "Average Time To Live" },
+  { value: "30 mins", label: "Your Min Time Investment" },
+  { value: "48 Hrs", label: "Support Response Time" },
   { value: "100%", label: "Satisfaction Rate" },
-  { value: "4-8 Wks", label: "Average Timeline" },
-  { value: "24/7", label: "Support Available" },
 ];
 
 const ProcessSection = () => {
@@ -155,7 +155,7 @@ const ProcessSection = () => {
                 variants={fadeInUpVariants}
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6"
               >
-                How We Work
+                &lt;Online in 7 Days/&gt;
               </motion.h2>
 
               {/* Subtitle */}
@@ -163,10 +163,11 @@ const ProcessSection = () => {
                 variants={fadeInUpVariants}
                 className="text-base sm:text-lg text-gray-600 leading-relaxed mb-8 max-w-lg"
               >
-                Our proven 5-step process ensures every project is delivered on
-                time, on budget, and exceeds expectations. From initial
-                discovery to ongoing support, we&apos;re with you every step of
-                the way.
+                We've done this enough times to have it dialled in. You show up
+                to a 30-minute call, tell us about your business, and we handle
+                everything from there. No back-and-forth. No chasing. No tech
+                headaches. From initial discovery to ongoing support, we&apos;re
+                with you every step of the way.
               </motion.p>
 
               {/* CTA Button */}
@@ -219,13 +220,18 @@ const ProcessSection = () => {
                       </h3>
                     </div>
 
+                    {/* Optional Subtitle */}
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-5">
+                      {step.subtitle}
+                    </p>
+
                     {/* Description */}
-                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-5 lg:pl-14">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-5">
                       {step.description}
                     </p>
 
                     {/* Checklist */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:pl-14">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {step.items.map((item, i) => (
                         <div key={i} className="flex items-center gap-2.5">
                           <div className="w-5 h-5 rounded-full bg-[#FFF0E8] flex items-center justify-center flex-shrink-0">
