@@ -114,7 +114,7 @@ const FeaturedSection = ({
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
             <motion.h2
               variants={fadeInUpVariants}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 max-w-2xl"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold font-avantt tracking-tight text-gray-900 max-w-2xl"
             >
               {title}
             </motion.h2>
@@ -162,7 +162,7 @@ const FeaturedSection = ({
                   {project.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="text-xs font-medium text-gray-700 uppercase tracking-wide border border-gray-300 rounded-full px-2 py-1 transition-colors duration-300 group-hover:border-brand group-hover:text-brand"
+                      className="text-xs font-medium text-gray-700 uppercase tracking-wide border border-gray-300 rounded-full px-2 py-1 transition-colors duration-300 group-hover:bg-brand group-hover:text-white group-hover:border-brand"
                     >
                       {tag}
                     </span>
@@ -172,7 +172,7 @@ const FeaturedSection = ({
                 {/* Title and Description */}
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors duration-300">
+                    <h3 className="text-xl lg:text-2xl font-bold font-avantt text-brand mb-2">
                       {project.title}
                     </h3>
                     <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
@@ -182,7 +182,7 @@ const FeaturedSection = ({
 
                   {/* Arrow Button */}
                   <button
-                    className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-brand transition-all duration-300"
+                    className="flex-shrink-0 w-10 h-10 rounded-full bg-gray flex items-center justify-center transition-all duration-300"
                     aria-label={`View ${project.title} project`}
                   >
                     <ArrowUpRight className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors duration-300" />

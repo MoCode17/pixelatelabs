@@ -169,7 +169,7 @@ const TestimonialsSection = ({
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
             <motion.h2
               variants={fadeInUpVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-2xl whitespace-pre-line"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold font-avantt tracking-tight text-white max-w-2xl whitespace-pre-line"
             >
               {title}
             </motion.h2>

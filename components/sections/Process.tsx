@@ -153,7 +153,7 @@ const ProcessSection = () => {
               {/* Title */}
               <motion.h2
                 variants={fadeInUpVariants}
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold font-avantt tracking-tight text-gray-900 mb-6"
               >
                 &lt;Online in 7 Days/&gt;
               </motion.h2>
@@ -257,30 +257,43 @@ const ProcessSection = () => {
       </div>
 
       {/* Stats Row */}
-      <div className="bg-linear-to-r from-brand-dark to-solar">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-10">
+      <motion.div
+        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        style={{
+          backgroundSize: "300% 300%",
+          backgroundImage:
+            "linear-gradient(135deg, #1A1A2E 0%, #FF6B2C22 40%, #FFD16618 65%, #1A1A2E 100%)",
+        }}
+        className="border-t border-brand/30"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-14">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={containerVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8"
+            className="grid grid-cols-2 md:grid-cols-4"
           >
             {processStats.map((stat, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUpVariants}
-                className="text-center"
+                className={`text-center px-4 py-2 ${
+                  index < processStats.length - 1
+                    ? "border-r border-white/30"
+                    : ""
+                }`}
               >
-                <p className="text-3xl sm:text-4xl font-bold text-gray-black mb-1">
+                <p className="text-3xl sm:text-4xl font-bold text-midnight font-avantt mb-1">
                   {stat.value}
                 </p>
-                <p className="text-sm text-midnight">{stat.label}</p>
+                <p className="text-sm text-gray-400">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
