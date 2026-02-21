@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import pexelsHero from "@/public/images/pexelsHero.jpg";
-import Nav from "@/components/ui/Nav";
 
 const Hero = () => {
   return (
@@ -29,7 +28,7 @@ const Hero = () => {
           <div className="text-solar text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 font-avantt font-bold">
             &lt;Web Design/&gt; 🥶
           </div>
-          <div className="flex flex-col items-start pl-24">
+          <div className="flex flex-col items-start md:pl-24">
             {/* Main Title */}
             <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold font-avantt leading-tight mb-6">
               Without The
