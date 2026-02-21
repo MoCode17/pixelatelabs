@@ -44,8 +44,15 @@ const Navbar = () => {
   const { scrollY } = useScroll({ target: ref });
   const spacerHeight = useTransform(scrollY, [0, 400], [16, 0]);
 
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-transparent z-100">
+    <nav
+      id="navbar"
+      className="fixed top-0 left-0 right-0 bg-transparent z-100"
+    >
       {/* Spacer */}
       <motion.div
         ref={ref}
@@ -87,12 +94,12 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8 overflow-hidden">
               {/* Main Nav Items */}
-              <Link
-                href="/home/home-v1"
-                className="text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors"
+              <button
+                onClick={() => scrollToSection("hero")}
+                className="text-surface hover:text-brand-dark text-sm font-medium transition-colors hover:cursor-pointer"
               >
                 Home
-              </Link>
+              </button>
               <Link
                 href="/about"
                 className="text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors"
@@ -111,12 +118,9 @@ const Navbar = () => {
               >
                 Contact
               </Link>
-              {/* Pages Dropdown */}
-              <div className="relative" ref={dropdownRef}>
-                <button className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors">
-                  <span>Portfolio</span>
-                </button>
-              </div>
+              <button className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors">
+                <span>Portfolio</span>
+              </button>
             </div>
             {/* CTA Button */}
             <div className="hidden lg:block">
@@ -160,13 +164,15 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden border-t border-gray-100 bg-snow">
           <div className="px-4 pt-4 pb-6 space-y-4">
-            <Link
-              href="/home/home-v1"
-              className="block text-gray-700 hover:text-gray-900 text-base font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
+            <button
+              onClick={() => {
+                scrollToSection("hero");
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-surface hover:text-brand-dark text-sm font-medium transition-colors hover:cursor-pointer"
             >
               Home
-            </Link>
+            </button>
 
             <Link
               href="/about"
