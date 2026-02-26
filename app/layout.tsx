@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Space_Mono } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 
 const avanttTrial = localFont({
   src: [
@@ -53,6 +54,7 @@ export default function RootLayout({
         className={`${outfit.variable} ${spaceMono.variable} ${avanttTrial.variable} antialiased`}
       >
         <div className="min-h-screen">{children}</div>
+        <Analytics />
       </body>
     </html>
   );
