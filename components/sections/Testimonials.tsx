@@ -2,10 +2,11 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { Star } from "lucide-react";
+import { motion } from "framer-motion";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import icon from "@/public/images/icon.svg";
-import HEA from "@/public/images/HEA-Hero.png";
 
 interface Testimonial {
   id: string;
@@ -69,7 +70,27 @@ const stats = [
   { value: "$499", label: "Starting Price" },
 ];
 
-const CYCLE_INTERVAL = 10000;
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const fadeInUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+};
 
 const TestimonialsSection = ({
   badge = "Client Stories",
@@ -77,78 +98,63 @@ const TestimonialsSection = ({
   subtitle = "Real businesses. Real results. Here's what happens when your website actually works.",
   testimonials = defaultTestimonials,
 }: TestimonialsSectionProps) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
+  );
 
-  const resetTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, CYCLE_INTERVAL);
-  }, []);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "start", slidesToScroll: 1 },
+    [autoplayPlugin.current]
+  );
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
   useEffect(() => {
-    resetTimer();
+    if (!emblaApi) return;
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    onSelect();
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
     };
-  }, [resetTimer]);
+  }, [emblaApi, onSelect]);
 
-  const handleTabClick = (i: number) => {
-    setActiveIndex(i);
-    resetTimer();
-  };
-
-  // Animation variants — matching Featured section patterns
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const fadeInUpVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-      },
-    },
-  };
-
-  const testimonialTransition = {
-    initial: { opacity: 0, x: 20 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -20 },
-    transition: {
-      duration: 0.4,
-      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-    },
-  };
-
-  const activeTestimonial = testimonials[activeIndex];
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+  const scrollTo = useCallback(
+    (index: number) => emblaApi?.scrollTo(index),
+    [emblaApi]
+  );
 
   return (
-    <section className="w-full bg-midnight py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section
+      className="relative w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, var(--color-brand-light) 0%, var(--color-brand) 45%, var(--color-brand-dark) 100%)",
+      }}
+    >
+      {/* Decorative radial glow — top left */}
+      <div className="pointer-events-none absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full bg-white/10 blur-[120px]" />
+      {/* Decorative radial glow — bottom right */}
+      <div className="pointer-events-none absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full bg-brand-dark/40 blur-[100px]" />
+      {/* Dot grid texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial="hidden"
@@ -159,8 +165,8 @@ const TestimonialsSection = ({
         >
           {/* Badge */}
           <motion.div variants={fadeInUpVariants} className="mb-4">
-            <span className="inline-flex items-center text-lg font-bold tracking-wider text-brand-light uppercase">
-              <Image src={icon} alt="Logo" className="w-6 h-6 mr-3" />
+            <span className="inline-flex items-center text-xs font-bold tracking-widest text-white/80 uppercase font-space-mono">
+              <Image src={icon} alt="Logo" className="w-5 h-5 mr-2.5" />
               {badge}
             </span>
           </motion.div>
@@ -176,88 +182,106 @@ const TestimonialsSection = ({
 
             <motion.p
               variants={fadeInUpVariants}
-              className="text-base sm:text-lg text-gray-400 max-w-md lg:max-w-lg lg:pt-2 leading-relaxed"
+              className="text-base sm:text-lg text-white/70 max-w-md lg:max-w-lg lg:pt-2 leading-relaxed"
             >
               {subtitle}
             </motion.p>
           </div>
         </motion.div>
 
-        {/* Testimonial Card */}
+        {/* Carousel */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={containerVariants}
         >
-          <motion.div
-            variants={cardVariants}
-            className="bg-midnight border border-white/10 rounded-2xl overflow-hidden"
-          >
-            <div className="relative p-8 sm:p-8 lg:p-8">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTestimonial.id}
-                  initial={testimonialTransition.initial}
-                  animate={testimonialTransition.animate}
-                  exit={testimonialTransition.exit}
-                  transition={testimonialTransition.transition}
-                >
-                  <div className="flex flex-col md:flex-row gap-12 items-center">
-                    <div className="relative w-full">
-                      <Image src={HEA} alt="HEA" className="w-full h-auto" />
-                    </div>
-                    <div>
+          <motion.div variants={fadeInUpVariants}>
+            {/* Embla viewport */}
+            <div ref={emblaRef} className="overflow-hidden">
+              {/* Embla track */}
+              <div className="flex -ml-4 sm:-ml-5 lg:-ml-6">
+                {testimonials.map((testimonial) => (
+                  <div
+                    key={testimonial.id}
+                    className="flex-none pl-4 sm:pl-5 lg:pl-6 w-full sm:w-1/2 lg:w-[calc(100%/2.3)]"
+                  >
+                    {/* Card */}
+                    <div className="h-full flex flex-col bg-white rounded-2xl p-6 sm:p-7 lg:p-8 shadow-xl shadow-black/20">
+                      {/* Decorative quote mark */}
+                      <div className="text-brand/15 font-avantt font-bold text-[7rem] leading-none select-none pointer-events-none -mt-4 -mb-8">
+                        &ldquo;
+                      </div>
+
                       {/* Stars */}
-                      <div className="flex items-center gap-1 mb-6">
-                        {Array.from({ length: activeTestimonial.rating }).map(
+                      <div className="flex items-center gap-1 mb-4">
+                        {Array.from({ length: testimonial.rating }).map(
                           (_, i) => (
                             <Star
                               key={i}
-                              className="w-5 h-5 fill-[#FFC107] text-[#FFC107]"
+                              className="w-4 h-4 fill-solar text-solar"
                             />
                           )
                         )}
                       </div>
+
                       {/* Quote */}
-                      <blockquote className="text-lg sm:text-xl lg:text-2xl text-white leading-relaxed mb-8 font-medium">
-                        &ldquo;{activeTestimonial.quote}&rdquo;
+                      <blockquote className="text-base sm:text-lg text-gray-800 leading-relaxed mb-6 font-medium flex-1">
+                        &ldquo;{testimonial.quote}&rdquo;
                       </blockquote>
+
                       {/* Author */}
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand to-brand-dark flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
-                          {activeTestimonial.initials}
+                      <div className="flex items-center gap-3 mt-auto pt-4 border-t border-gray-100">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand to-brand-dark flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                          {testimonial.initials}
                         </div>
                         <div>
-                          <p className="text-white font-semibold text-base">
-                            {activeTestimonial.name}
+                          <p className="text-gray-900 font-semibold text-sm">
+                            {testimonial.name}
                           </p>
-                          <p className="text-gray-400 text-sm">
-                            {activeTestimonial.role}
+                          <p className="text-gray-500 text-xs">
+                            {testimonial.role}
                           </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
+                ))}
+              </div>
             </div>
 
-            {/* Testimonial Tabs */}
-            <div className="flex flex-wrap justify-stretch">
-              {testimonials.map((testimonial, index) => (
-                <button
-                  key={testimonial.id}
-                  onClick={() => handleTabClick(index)}
-                  className={`grow-1 px-5 py-2.5 text-sm font-medium transition-all duration-300 cursor-pointer ${
-                    index === activeIndex
-                      ? "bg-dark-lighter text-white shadow-lg shadow-brand/25"
-                      : "text-gray-400 border border-dark-lighter hover:border-brand/40 hover:text-white"
-                  }`}
-                >
-                  {testimonial.name}
-                </button>
-              ))}
+            {/* Controls: Prev | Dots | Next */}
+            <div className="flex items-center justify-center gap-6 mt-8">
+              <button
+                onClick={scrollPrev}
+                aria-label="Previous testimonial"
+                className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white transition-all duration-200 hover:scale-105 cursor-pointer"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              <div className="flex items-center gap-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollTo(index)}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                    className={`rounded-full transition-all duration-300 cursor-pointer ${
+                      selectedIndex === index
+                        ? "w-6 h-2.5 bg-white"
+                        : "w-2.5 h-2.5 bg-white/40 hover:bg-white/60"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={scrollNext}
+                aria-label="Next testimonial"
+                className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white transition-all duration-200 hover:scale-105 cursor-pointer"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
           </motion.div>
         </motion.div>
@@ -268,18 +292,18 @@ const TestimonialsSection = ({
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 pt-8"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 pt-10 mt-10 border-t border-white/20"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               variants={fadeInUpVariants}
-              className="text-center border border-white/20 rounded-lg p-4"
+              className="text-center px-4 py-5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm"
             >
-              <p className="text-3xl sm:text-4xl font-bold text-white pb-2 mb-2 border-b border-white/20">
+              <p className="text-3xl sm:text-4xl font-bold text-white font-avantt mb-1">
                 {stat.value}
               </p>
-              <p className="text-sm text-gray-400">{stat.label}</p>
+              <p className="text-sm text-white/65 font-outfit">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>
