@@ -54,3 +54,34 @@ export const slideInRight: Variants = {
     transition: { duration: 0.8, ease: [0.25, 0.4, 0.25, 1] },
   },
 };
+
+export const heroReveal: Variants = {
+  hidden: { opacity: 0, y: 60, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+export const cardEntrance: Variants = {
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.7, ease: [0.25, 0.4, 0.25, 1] },
+  },
+};
+
+export const staggerFast: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.07,
+      delayChildren: 0.1,
+    },
+  },
+};

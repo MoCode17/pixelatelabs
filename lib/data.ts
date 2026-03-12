@@ -3,28 +3,29 @@ import { Project } from "@/lib/types";
 export const projects: Project[] = [
   {
     id: "1",
-    title: "Melbourne Plumbing Co.",
-    slug: "melbourne-plumbing",
-    liveUrl: "https://melbourneplumbing.com.au",
+    title: "Haven & Co.",
+    slug: "haven-co",
+    liveUrl: "https://havenco.vercel.app/",
     description:
-      "A modern, high-converting website for a Melbourne-based plumbing company. Built to generate leads with clear service pages, online booking, and local SEO optimisation.",
+      "A world-class luxury real estate website. This is a demo/concept site — no backend or auth needed. The goal is to create a visually stunning, award-worthy frontend. Built to generate leads and showcase the brand, includes online booking, and local SEO optimisation.",
     image: "/images/projects/havenco/havencoHero.png",
-    tags: ["Plumber", "Melbourne", "Lead Gen"],
+    tags: ["Real Estate", "Luxury", "Premium"],
     screenshots: [
-      "/projects/melbourne-plumbing/hero.png",
-      "/projects/melbourne-plumbing/services.png",
-      "/projects/melbourne-plumbing/booking.png",
+      "/images/projects/havenco/havenco-2.png",
+      "/images/projects/havenco/havenco-3.png",
+      "/images/projects/havenco/havenco-4.png",
     ],
     designBrief: {
       colors: [
-        { hex: "#1A3A5C", label: "Primary" },
-        { hex: "#2B8FD4", label: "Accent" },
-        { hex: "#F5F7FA", label: "Background" },
-        { hex: "#1A1A2E", label: "Dark" },
+        { hex: "#141414", label: "Primary - Obsidian" },
+        { hex: "#C9A84C", label: "Accent - Gold" },
+        { hex: "#F5F0EB", label: "Heading - Silk" },
+        { hex: "#6B6B6B", label: "Body - Mist" },
       ],
       fonts: [
-        { name: "Inter", role: "Body" },
-        { name: "Poppins", role: "Headings" },
+        { name: "DM Sans", role: "Body" },
+        { name: "Cormorant Garamond", role: "Headings" },
+        { name: "Montserrat", role: "Accent" },
       ],
     },
   },
