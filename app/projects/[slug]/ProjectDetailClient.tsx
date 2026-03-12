@@ -48,7 +48,8 @@ export default function ProjectDetailClient({ project }: Props) {
           }}
         />
         <GrainOverlay opacity={1} /> */}
-        <div
+        {/* Decorative grainient background */}
+        {/* <div
           className="absolute inset-0"
           style={{ width: "1080px", height: "1080px", position: "relative" }}
         >
@@ -76,7 +77,7 @@ export default function ProjectDetailClient({ project }: Props) {
             centerY={0}
             zoom={0.9}
           />
-        </div>
+        </div> */}
 
         <div className="relative z-10 max-w-7xl mx-auto">
           <Link
